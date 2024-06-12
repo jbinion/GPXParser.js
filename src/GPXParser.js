@@ -25,6 +25,7 @@ gpxParser.prototype.parse = function (gpxstring) {
     this.xmlSource = domParser.parseFromString(gpxstring, 'text/xml');
 
     let metadata = this.xmlSource.querySelector('metadata');
+
     if(metadata != null){
         this.metadata.name  = this.getElementValue(metadata, "name");
         this.metadata.desc  = this.getElementValue(metadata, "desc");
@@ -136,6 +137,18 @@ gpxParser.prototype.parse = function (gpxstring) {
         let trk = trks[idx];
         let track = {};
 
+
+        let extensions = trk.querySelector('extensions');
+        if(extensions != null){
+            console.log('got extensions')
+            const firstChild = extensions.firstChild;
+            console.log(firstChild)
+            console.log(firstChild.value)
+            const nextChild = firstChild;
+            console.log(nextChild)
+        }
+        
+ 
         track.name   = keepThis.getElementValue(trk, "name");
         track.cmt    = keepThis.getElementValue(trk, "cmt");
         track.desc   = keepThis.getElementValue(trk, "desc");
@@ -147,6 +160,7 @@ gpxParser.prototype.parse = function (gpxstring) {
 
         let link     = {};
         let linkElem = trk.querySelector('link');
+        
         if(linkElem != null){
             link.href = linkElem.getAttribute('href');
             link.text = keepThis.getElementValue(linkElem, "text");

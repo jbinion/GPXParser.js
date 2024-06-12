@@ -40,6 +40,11 @@
     </wpt>
     <trk>
         <name>Track</name>
+            <extensions>
+      <gpxx:TrackExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3">
+        <gpxx:DisplayColor>Blue</gpxx:DisplayColor>
+      </gpxx:TrackExtension>
+    </extensions>
         <cmt>Bridge</cmt>
         <desc>Demo track</desc>
         <src>GPX Parser</src>
