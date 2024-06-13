@@ -1,23 +1,25 @@
-var parser = require('xml2json');
-var path = require('path');
-var fs = require('fs').promises;    
-require('jsdom-global')();
-global.DOMParser = window.DOMParser;
-const main = async() =>{
-    const filePath = path.join(__dirname, '../test/test.gpx');
-    const data = await fs.readFile(filePath, "utf8");
-console.log(data)
-        let domParser = new window.DOMParser();
-    const xmlSource = domParser.parseFromString(data, 'text/xml');
-    console.log(xmlSource)
-    const json = parser.toJson(data);
-    console.log(json)
-     console.log(JSON.parse(json).gpx.creator)
+const { convertXML } = require("simple-xml-to-json");
+const formatTrk = require("./formatTrk");
+const formatWpt = require("./formatWpt");
 
+const main = (gpxString) => {
+  const { gpx } = convertXML(gpxString);
 
-}
+  const nodes = gpx.children;
+  const waypoints = [];
+  const tracks = [];
 
+  nodes.forEach((node) => {
+    const type = Object.keys(node)[0];
+    if (type === "trk") {
+      tracks.push(formatTrk(node.trk));
+    }
+    if (type === "wpt") {
+      waypoints.push(formatWpt(node));
+    }
+  });
 
+  return { waypoints, tracks };
+};
 
-
-main()
+module.exports = main;
