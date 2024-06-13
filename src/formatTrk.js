@@ -1,5 +1,4 @@
 const formatTrk = (trk) => {
-  console.log(trk);
   const name = trk.children[0].name.content;
   const color =
     trk.children[1]?.extensions?.children[0]["gpxx:TrackExtension"].children[0][
