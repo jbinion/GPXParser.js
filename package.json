@@ -2,7 +2,7 @@
   "name": "gpxparser",
   "version": "3.0.8",
   "description": "GPX file parser",
-  "main": "dist/index.min.js",
+  "main": "index.js",
   "scripts": {
     "test": "jest",
     "build": "gulp build"
