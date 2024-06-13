@@ -3,7 +3,7 @@ const formatTrk = (trk) => {
   const color =
     trk.children[1]?.extensions?.children[0]["gpxx:TrackExtension"].children[0][
       "gpxx:DisplayColor"
-    ].content || "red";
+    ].content || "orange";
   const waypoints =
     trk.children[2]?.trkseg.children.map((t) => formatTrkpt(t)) || [];
   return { name, color, waypoints };
