@@ -1,8 +1,8 @@
 var gulp = require("gulp"),
   minify = require("gulp-minify"),
-  jsdoc = require("gulp-jsdoc3"),
-  mocha = require("gulp-mocha");
+  jsdoc = require("gulp-jsdoc3");
 var jest = require("gulp-jest").default;
+
 gulp.task("test", function () {
   return gulp.src("./test/parse.test.js", { read: false }).pipe(
     jest({
